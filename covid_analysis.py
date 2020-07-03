@@ -49,7 +49,6 @@ def add_columns(df):
     df.date = pd.to_datetime(df['date'].astype('str'), format='%Y-%m-%d')
     df.date = df.date.dt.date
     df['change_in_cases'] = df.cases.diff().fillna(0).astype(int)
-    df['change_in_cases_plot'] = (df['change_in_cases'] / 10).astype(int)
     df['change_in_deaths'] = (df.deaths.diff()).fillna(0).astype(int)
     return df[df.date >= start_date]
 
@@ -58,12 +57,11 @@ def plot_data(df, df3, to_view):
     if to_view in get_states():
         chart1 = df3.plot(x='date',
                           y=['positiveIncrease', 'deathIncrease', 'hospitalizedIncrease', 'totalTestResultsIncrease', ],
-                          title=to_view,
+                          title="{} - in the last {} days".format(to_view, cut_off_days),
                           kind='bar',
                           use_index=True, logy=True)
         chart1.set_xlabel("{} - in the last {} days".format(to_view, cut_off_days))
         labels = ['Cases', 'Deaths', 'Hospitalizations', 'Tests']
-        chart1.legend(labels)
         for index, value in enumerate(df3['positiveIncrease']):
             plt.text(index, value, str(value))
         for index, value in enumerate(df3['deathIncrease']):
@@ -73,17 +71,17 @@ def plot_data(df, df3, to_view):
         for index, value in enumerate(df3['totalTestResultsIncrease']):
             plt.text(index, value, str(value))
     else:
-        chart1 = df.plot(x='date', y=['change_in_cases', 'change_in_deaths'], title=to_view,
+        chart1 = df.plot(x='date', y=['change_in_cases', 'change_in_deaths'],
                          kind='bar',
+                         title="{} - in the last {} days".format(to_view, cut_off_days),
                          use_index=True, logy=True)
-        chart1.set_xlabel("{} - in the last {} days".format(to_view, cut_off_days))
         labels = ['Cases', 'Deaths']
-        chart1.legend(labels)
+
         for index, value in enumerate(df['change_in_cases']):
             plt.text(index, value, str(value))
         for index, value in enumerate(df['change_in_deaths']):
             plt.text(index, value, str(value))
-
+    chart1.legend(labels)
     plt.show()
 
 
