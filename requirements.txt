@@ -4,6 +4,7 @@ aiohttp==3.6.2
 altair==4.1.0
 appdirs==1.4.3
 arcade==2.1.1
+asgiref==3.2.10
 asn1crypto==0.24.0
 astor==0.8.1
 async==0.6.2
@@ -41,7 +42,7 @@ decorator==4.4.2
 defusedxml==0.6.0
 demjson==2.2.4
 distlib==0.3.0
-Django==2.2.6
+Django==3.0.8
 django-allauth==0.42.0
 docutils==0.15.2
 entrypoints==0.3
