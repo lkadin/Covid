@@ -120,18 +120,22 @@ def prep_place_2(to_view):
 
 
 def translate_states():
-    states_dict = {'Florida': 'FL', 'California': 'CA', 'Georgia': 'GA'}
-    return states_dict
+    return {'Florida': 'FL', 'California': 'CA', 'Georgia': 'GA'}
 
 
 def get_states():
-    states = ['Florida', 'California', 'Georgia']
-    return states
+    return ['Florida', 'California', 'Georgia']
 
 
 def get_counties():
-    counties = ['Miami-Dade,Florida', 'Broward,Florida', 'Palm Beach,Florida', 'Monroe,Florida','Denver,Colorado','Los Angeles,California']
-    return counties
+    return [
+        'Miami-Dade,Florida',
+        'Broward,Florida',
+        'Palm Beach,Florida',
+        'Monroe,Florida',
+        'Denver,Colorado',
+        'Los Angeles,California',
+    ]
 
 
 def main():
