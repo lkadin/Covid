@@ -4,16 +4,19 @@ import datetime
 try:
     _fromUtf8 = QtCore.QString.fromUtf8
 except AttributeError:
+
     def _fromUtf8(s):
         return s
+
 
 try:
     _encoding = QtWidgets.QApplication.UnicodeUTF8
 
-
     def _translate(context, text, disambig):
         return QtWidgets.QApplication.translate(context, text, disambig, _encoding)
+
 except AttributeError:
+
     def _translate(context, text, disambig):
         return QtWidgets.QApplication.translate(context, text, disambig)
 
@@ -77,8 +80,7 @@ class Ui_MainWindow(object):
             self.cb1.addItem(county)
 
     def display_results(self, results, header_labels=None):
-        self.results.setHorizontalHeaderLabels(header_labels
-                                               )
+        self.results.setHorizontalHeaderLabels(header_labels)
         for row, line in enumerate(results):
             for col, data in enumerate(line):
                 self.results.setItem(row, col, QtWidgets.QTableWidgetItem(data))
